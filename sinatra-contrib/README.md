@@ -22,7 +22,7 @@ Currently included:
 
 * [`sinatra/config_file`][sinatra-config-file]: Allows loading configuration from yaml files.
 
-* [`sinatra/content_for`][sinatra-content-for]: Adds Rails-style `content_for` helpers to Haml, Erb,
+* [`sinatra/content_for`][sinatra-content-for]: Adds Rails-style `content_for` helpers to Haml, Erb, Erubi,
   Erubis and Slim.
 
 * [`sinatra/cookies`][sinatra-cookies]: A `cookies` helper for reading and writing cookies.
@@ -66,6 +66,9 @@ Currently included:
 
 * [`sinatra/test_helpers`][sinatra-test-helpers]: Helper methods to ease testing your Sinatra
   application. Partly extracted from Sinatra. Testing framework agnostic
+
+* `sinatra/quiet_logger`: Extension to exclude specific pathes from access log.
+  It works by patching Rack::CommonLogger
 
 ## Installation
 

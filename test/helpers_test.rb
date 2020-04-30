@@ -785,7 +785,7 @@ class HelpersTest < Minitest::Test
 
   describe 'send_file' do
     setup do
-      @file = File.dirname(__FILE__) + '/file.txt'
+      @file = __dir__ + '/file.txt'
       File.open(@file, 'wb') { |io| io.write('Hello World') }
     end
 
@@ -898,7 +898,7 @@ class HelpersTest < Minitest::Test
     end
 
     it "is able to send files with unknown mime type" do
-      @file = File.dirname(__FILE__) + '/file.foobar'
+      @file = __dir__ + '/file.foobar'
       File.open(@file, 'wb') { |io| io.write('Hello World') }
       send_file_app
       get '/file.txt'
@@ -1946,6 +1946,28 @@ class HelpersTest < Minitest::Test
       get '/'
       assert ok?
       assert_equal '42 &lt; 43', body
+    end
+
+    it 'prepends modules so previously-defined methods can be overridden consistently' do
+      mock_app do
+        helpers do
+          def one; nil end
+          def two; nil end
+        end
+
+        helpers ::HelperOne do
+          def two; '2' end
+        end
+
+        get('/one') { one }
+        get('/two') { two }
+      end
+
+      get '/one'
+      assert_equal '1', body
+
+      get '/two'
+      assert_equal '2', body
     end
   end
 end

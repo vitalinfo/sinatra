@@ -353,13 +353,13 @@ Puedes retornar cualquier objeto que sea una respuesta Rack válida,
 un objeto que represente el cuerpo de una respuesta Rack o un código
 de estado HTTP:
 
-* Un arreglo con tres elementos: `[estado (Fixnum), cabeceras (Hash), cuerpo de
+* Un arreglo con tres elementos: `[estado (Integer), cabeceras (Hash), cuerpo de
   la respuesta (responde a #each)]`
-* Un arreglo con dos elementos: `[estado (Fixnum), cuerpo de la respuesta
+* Un arreglo con dos elementos: `[estado (Integer), cuerpo de la respuesta
   (responde a #each)]`
 * Un objeto que responde a `#each` y que le pasa únicamente strings al bloque
   dado
-* Un Fixnum representando el código de estado
+* Un Integer representando el código de estado
 
 De esa manera, por ejemplo, podemos fácilmente implementar un ejemplo de streaming:
 
@@ -430,7 +430,7 @@ Los archivos estáticos son servidos desde el directorio público
 opción `:public_folder`:
 
 ```ruby
-set :public_folder, File.dirname(__FILE__) + '/static'
+set :public_folder, __dir__ + '/static'
 ```
 
 Note que el nombre del directorio público no está incluido en la URL. Por
@@ -3083,9 +3083,9 @@ thin --threaded start
 Las siguientes versiones de Ruby son soportadas oficialmente:
 
 <dl>
-  <dt>Ruby 2.2</dt>
+  <dt>Ruby 2.3</dt>
     <dd>
-      2.2 Es totalmente compatible y recomendado. Actualmente no hay planes
+      2.3 Es totalmente compatible y recomendado. Actualmente no hay planes
       soltar el apoyo oficial para ello.
     </dd>
 
